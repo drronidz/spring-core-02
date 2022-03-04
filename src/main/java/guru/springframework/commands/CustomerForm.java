@@ -32,9 +32,11 @@ public class CustomerForm {
     private String passwordTextConf;
 
     @NotEmpty
+    @Size(min = 6, max = 20)
     private String firstName;
 
     @NotEmpty
+    @Size(min = 6, max = 20)
     private String lastName;
 
     @NotEmpty
