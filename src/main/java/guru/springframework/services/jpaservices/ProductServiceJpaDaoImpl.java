@@ -1,5 +1,6 @@
 package guru.springframework.services.jpaservices;
 
+import guru.springframework.commands.ProductForm;
 import guru.springframework.domain.Product;
 import guru.springframework.services.ProductService;
 import org.springframework.context.annotation.Profile;
@@ -47,5 +48,10 @@ public class ProductServiceJpaDaoImpl extends AbstractJpaDaoService implements P
         em.getTransaction().begin();
         em.remove(em.find(Product.class, id));
         em.getTransaction().commit();
+    }
+
+    @Override
+    public ProductForm saveOrUpdateProductForm(ProductForm productForm) {
+        return null;
     }
 }

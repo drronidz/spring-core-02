@@ -7,6 +7,9 @@ Author Name : @ DRRONIDZ
 DATE : 3/4/2022 2:02 PM
 */
 
+import guru.springframework.commands.ProductForm;
+import guru.springframework.converters.ProductFormToProduct;
+import guru.springframework.converters.ProductToProductForm;
 import guru.springframework.domain.Product;
 import guru.springframework.repositories.ProductRepository;
 import guru.springframework.services.ProductService;
@@ -22,6 +25,19 @@ import java.util.List;
 public class ProductServiceRepoImpl implements ProductService {
 
     private ProductRepository productRepository;
+
+    private ProductFormToProduct productFormToProduct;
+    private ProductToProductForm productToProductForm;
+
+    @Autowired
+    public void setProductToProductForm(ProductToProductForm productToProductForm) {
+        this.productToProductForm = productToProductForm;
+    }
+
+    @Autowired
+    public void setProductFormToProduct(ProductFormToProduct productFormToProduct) {
+        this.productFormToProduct = productFormToProduct;
+    }
 
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
@@ -48,5 +64,25 @@ public class ProductServiceRepoImpl implements ProductService {
     @Override
     public void delete(Integer id) {
         productRepository.delete(id);
+    }
+
+    @Override
+    public ProductForm saveOrUpdateProductForm(ProductForm productForm) {
+        Product newProduct = productFormToProduct.convert(productForm);
+
+        if(newProduct.getId() != null) {
+            // Update Existing Product
+            Product productToUpdate = this.getById(productForm.getId());
+
+            productToUpdate.setVersion(productForm.getVersion());
+            productToUpdate.setDescription(productForm.getDescription());
+            productToUpdate.setPrice(productForm.getPrice());
+            productToUpdate.setImageUrl(productForm.getImageURL());
+
+            return productToProductForm.convert(this.saveOrUpdate(productToUpdate));
+        } else {
+            // Create New Product
+            return productToProductForm.convert(this.saveOrUpdate(productFormToProduct.convert(productForm)));
+        }
     }
 }
