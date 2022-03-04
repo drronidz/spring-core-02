@@ -30,12 +30,18 @@ public class CustomerForm {
     @NotEmpty
     @Size(min = 6, max = 20)
     private String passwordTextConf;
+
+    @NotEmpty
     private String firstName;
+
+    @NotEmpty
     private String lastName;
 
     @NotEmpty
     @Email
     private String email;
+
+    @NotEmpty
     private String phoneNumber;
 
     public Integer getUserId() {
