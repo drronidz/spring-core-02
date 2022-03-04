@@ -47,13 +47,13 @@
                     </span>
                 </div>
             </div>
-            <div cclass="form-group" th:class="${#fields.hasErrors('imageURL')} ? 'form-group has-error' : 'form-group'">
+            <div cclass="form-group" th:class="${#fields.hasErrors('imageUrl')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Image Url:</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{imageURL}" th:errorclass="has-error"/>
+                    <input type="text" class="form-control" th:field="*{imageUrl}" th:errorclass="has-error"/>
                     <span class="help-block">
                         <ul>
-                            <li th:each="error : ${#fields.errors('imageURL')}" th:text="${error}"/>
+                            <li th:each="error : ${#fields.errors('imageUrl')}" th:text="${error}"/>
                         </ul>
                     </span>
                 </div>

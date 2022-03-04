@@ -31,7 +31,7 @@ public class ProductForm {
 
     @NotEmpty
     @URL
-    private String imageURL;
+    private String imageUrl;
 
 
     public Integer getId() {
@@ -66,11 +66,11 @@ public class ProductForm {
         this.price = price;
     }
 
-    public String getImageURL() {
-        return imageURL;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setImageURL(String imageURL) {
-        this.imageURL = imageURL;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

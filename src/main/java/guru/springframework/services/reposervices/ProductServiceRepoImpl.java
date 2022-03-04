@@ -77,7 +77,7 @@ public class ProductServiceRepoImpl implements ProductService {
             productToUpdate.setVersion(productForm.getVersion());
             productToUpdate.setDescription(productForm.getDescription());
             productToUpdate.setPrice(productForm.getPrice());
-            productToUpdate.setImageUrl(productForm.getImageURL());
+            productToUpdate.setImageUrl(productForm.getImageUrl());
 
             return productToProductForm.convert(this.saveOrUpdate(productToUpdate));
         } else {
