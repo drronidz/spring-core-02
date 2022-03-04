@@ -7,6 +7,8 @@ Author Name : @ DRRONIDZ
 DATE : 3/4/2022 2:14 PM
 */
 
+import guru.springframework.commands.CustomerForm;
+import guru.springframework.converters.CustomerFormToCustomer;
 import guru.springframework.domain.Customer;
 import guru.springframework.domain.Product;
 import guru.springframework.repositories.CustomerRepository;
@@ -23,10 +25,16 @@ import java.util.List;
 public class CustomerServiceRepoImpl implements CustomerService {
 
     private CustomerRepository customerRepository;
+    private CustomerFormToCustomer customerFormToCustomer;
 
     @Autowired
     public void setCustomerRepository(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
+    }
+
+    @Autowired
+    public void setCustomerFormToCustomer(CustomerFormToCustomer customerFormToCustomer) {
+        this.customerFormToCustomer = customerFormToCustomer;
     }
 
     @Override
@@ -49,5 +57,16 @@ public class CustomerServiceRepoImpl implements CustomerService {
     @Override
     public void delete(Integer id) {
         customerRepository.delete(id);
+    }
+
+    @Override
+    public Customer saveOrUpdateCustomerForm(CustomerForm customerForm) {
+        Customer newCustomer = customerFormToCustomer.convert(customerForm);
+
+        if(newCustomer.getUser().getId() != null) {
+            Customer existingCustomer = getById(newCustomer.getId());
+            newCustomer.getUser().setEnabled(existingCustomer.getUser().getEnabled());
+        }
+        return saveOrUpdate(newCustomer);
     }
 }
