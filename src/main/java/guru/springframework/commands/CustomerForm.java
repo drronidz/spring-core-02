@@ -7,7 +7,10 @@ Author Name : @ DRRONIDZ
 DATE : 3/4/2022 2:42 PM
 */
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.Size;
 
 public class CustomerForm {
 
@@ -17,11 +20,15 @@ public class CustomerForm {
     private Integer customerVersion;
 
     @NotEmpty
+    @Size(min = 4, max = 15)
     private String userName;
     private String passwordText;
     private String passwordTextConf;
     private String firstName;
     private String lastName;
+
+    @NotEmpty
+    @Email
     private String email;
     private String phoneNumber;
 
