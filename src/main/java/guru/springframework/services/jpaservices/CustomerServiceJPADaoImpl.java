@@ -1,5 +1,6 @@
 package guru.springframework.services.jpaservices;
 
+import guru.springframework.commands.CustomerForm;
 import guru.springframework.domain.Customer;
 import guru.springframework.services.CustomerService;
 import guru.springframework.services.security.EncryptionService;
@@ -62,5 +63,10 @@ public class CustomerServiceJPADaoImpl extends AbstractJpaDaoService implements 
         em.getTransaction().begin();
         em.remove(em.find(Customer.class, id));
         em.getTransaction().commit();
+    }
+
+    @Override
+    public Customer saveOrUpdateCustomerForm(CustomerForm customerForm) {
+        return null;
     }
 }

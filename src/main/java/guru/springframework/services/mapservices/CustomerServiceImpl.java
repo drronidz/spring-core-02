@@ -1,5 +1,6 @@
 package guru.springframework.services.mapservices;
 
+import guru.springframework.commands.CustomerForm;
 import guru.springframework.domain.Customer;
 import guru.springframework.domain.DomainObject;
 import guru.springframework.services.CustomerService;
@@ -35,4 +36,8 @@ public class CustomerServiceImpl extends AbstractMapService implements CustomerS
         super.delete(id);
     }
 
+    @Override
+    public Customer saveOrUpdateCustomerForm(CustomerForm customerForm) {
+        return null;
+    }
 }
