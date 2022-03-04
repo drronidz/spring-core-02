@@ -7,12 +7,16 @@ Author Name : @ DRRONIDZ
 DATE : 3/4/2022 2:42 PM
 */
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class CustomerForm {
 
     private Integer userId;
     private Integer userVersion;
     private Integer customerId;
     private Integer customerVersion;
+
+    @NotEmpty
     private String userName;
     private String passwordText;
     private String passwordTextConf;
