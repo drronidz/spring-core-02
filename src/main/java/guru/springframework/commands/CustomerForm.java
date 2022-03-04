@@ -22,6 +22,9 @@ public class CustomerForm {
     @NotEmpty
     @Size(min = 4, max = 15)
     private String userName;
+
+    @NotEmpty
+    @Size(min = 6, max = 20)
     private String passwordText;
     private String passwordTextConf;
     private String firstName;
