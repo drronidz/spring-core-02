@@ -20,7 +20,7 @@ public class CustomerForm {
     private Integer customerVersion;
 
     @NotEmpty
-    @Size(min = 4, max = 15)
+    @Size(min = 4, max = 75)
     private String userName;
 
     @NotEmpty
