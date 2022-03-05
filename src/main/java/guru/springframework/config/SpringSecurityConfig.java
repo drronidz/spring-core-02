@@ -58,7 +58,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // No Longer authentication needed on the root url ...
         // http.authorizeRequests().antMatchers("/").permitAll();
-        http.csrf().ignoringAntMatchers("/h2-console").disable()
+        http.headers().frameOptions().disable();
+        http.csrf().ignoringAntMatchers("/h2-console/**").disable()
                 .authorizeRequests().antMatchers("/**/favicon.ico").permitAll()
                 .and().authorizeRequests().antMatchers("/product/**").permitAll()
                 .and().authorizeRequests().antMatchers("/webjars/**").permitAll()
@@ -66,7 +67,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests().antMatchers("/js").permitAll()
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().authorizeRequests().antMatchers("/customer/**").authenticated()
-                .and().authorizeRequests().antMatchers("/user/**").authenticated()
+                .and().authorizeRequests().antMatchers("/user/**").hasAuthority("ADMIN")
                 .and().exceptionHandling().accessDeniedPage("/access_denied");
     }
 
