@@ -43,6 +43,7 @@ public class LoginAspect {
         String userDetails = (String) authentication.getPrincipal();
         System.out.println("Login failed for user: " + userDetails);
 
+
         publisher.publish(new LoginFailureEvent(authentication));
     }
 }
