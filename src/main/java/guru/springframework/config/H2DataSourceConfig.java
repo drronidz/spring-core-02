@@ -10,10 +10,14 @@ DATE : 3/7/2022 11:44 PM
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
-
+@EnableTransactionManagement
 @Configuration
-public class H2DataSourceConfig {
+public class H2DataSourceConfig implements TransactionManagementConfigurer {
 
 
     @Bean
@@ -24,5 +28,15 @@ public class H2DataSourceConfig {
         dataSource.setUsername("sa");
         dataSource.setPassword("");
         return dataSource;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new DataSourceTransactionManager(dataSource());
+    }
+
+    @Override
+    public PlatformTransactionManager annotationDrivenTransactionManager() {
+        return transactionManager();
     }
 }
