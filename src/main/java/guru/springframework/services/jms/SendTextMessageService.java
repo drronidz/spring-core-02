@@ -1,4 +1,4 @@
-package guru.springframework.services;
+package guru.springframework.services.jms;
 
 /*
 PROJECT NAME : Spring Core Advanced - Beyond the Basics (Part 2)
