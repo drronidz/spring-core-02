@@ -132,6 +132,7 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
     public void loadUsersAndCustomers() {
         User user1 = new User();
         user1.setUsername("mweston");
+        user1.setEnabled(true);
         user1.setPassword("password");
 
         Customer customer1 = new Customer();
@@ -149,6 +150,7 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
 
         User user2 = new User();
         user2.setUsername("fglenanne");
+        user2.setEnabled(true);
         user2.setPassword("password");
 
         Customer customer2 = new Customer();
@@ -166,6 +168,7 @@ public class SpringJPABootstrap implements ApplicationListener<ContextRefreshedE
 
         User user3 = new User();
         user3.setUsername("saxe");
+        user3.setEnabled(true);
         user3.setPassword("password");
 
         Customer customer3 = new Customer();
